@@ -1,0 +1,17 @@
+{
+  "name": "employees-data-manipolation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TypeScript exercises on employee data manipulation",
+  "main": "dist/Employees.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node dist/Employees.js",
+    "check": "tsc -p . --noEmit",
+    "clean": "node -e \"const fs=require('fs'); fs.rmSync('dist',{ recursive: true, force: true });\"",
+    "dev": "npm run build && npm run start"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
