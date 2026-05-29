@@ -10,6 +10,7 @@ const departmentSalaryAvg_1 = require("./exercises/departmentSalaryAvg");
 const mostPaid_1 = require("./exercises/mostPaid");
 const mostPaidByDepartment_1 = require("./exercises/mostPaidByDepartment");
 const sortBy_2 = require("./exercises/sortBy");
+const statistics_1 = require("./exercises/statistics");
 exports.employees = (0, types_1.toEmployees)([
     ["Johnny Depp", "Finance", 45, 40000],
     ["Quentin Tarantino", "Sales", 24, 75000],
@@ -44,3 +45,4 @@ console.log("Most paid employee in Sales department:", (0, mostPaidByDepartment_
 console.log("Most paid employee in Finance department:", (0, mostPaidByDepartment_1.mostPaidByDepartment)(financeEmployees, "Finance"));
 console.log("Most paid employee in Engineering department:", (0, mostPaidByDepartment_1.mostPaidByDepartment)(filteredEngineerEmployees, "Engineering"));
 console.log("Sorted employees by department and salary:", (0, sortBy_2.sortByDepartmentAndSalary)(exports.employees));
+console.log("Statistics by department:", (0, statistics_1.statistics)(exports.employees));

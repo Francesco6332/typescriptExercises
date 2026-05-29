@@ -65,18 +65,31 @@ class App extends LitElement {
 
     return html`
       <main>
+      
         <h1>Employees Data Manipulation</h1>
         <h2>Most Paid Employees by Department</h2>
+
         <grid-component columns="3" rows="1">
           <card-component name=${mostPaidByDepartment(employees, 'Engineering').name} subtitle=${mostPaidByDepartment(employees, 'Engineering').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Engineering').salary)}></card-component>
           <card-component name=${mostPaidByDepartment(employees, 'Finance').name} subtitle=${mostPaidByDepartment(employees, 'Finance').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Finance').salary)}></card-component>
           <card-component name=${mostPaidByDepartment(employees, 'Sales').name} subtitle=${mostPaidByDepartment(employees, 'Sales').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Sales').salary)}></card-component>
         </grid-component>
 
+        <section class="hero">
+          <p class="eyebrow">Statistics for each department</p>
+          <h1>Department Statistics</h1>
+        </section>
+
+        <section class="result">
+          <grid-component columns="3" rows="1">
+          </grid-component>
+        </section>
+
         <div class="exercises">
           <h2>Employees</h2>
           <a href="/employees" class="exercise-link" @click=${(event: Event) => this.navigateTo(event, '/employees')}>View Employees Data</a>
         </div>
+
         <div class="exercises">
           <h2>Other Exercises</h2>
           <ul>
@@ -85,6 +98,7 @@ class App extends LitElement {
             <li><a href="/exercises/sortBy" class="exercise-link" @click=${(event: Event) => this.navigateTo(event, '/exercises/sortBy')}>Sort Employees exercises</a></li>
           </ul>
         </div>
+
       </main>
     `;
   }

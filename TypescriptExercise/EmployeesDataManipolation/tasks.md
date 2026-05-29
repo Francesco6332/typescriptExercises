@@ -34,4 +34,4 @@ Engineering: {
     minSalary: 54000,
     maxSalary: 120000,
     averageAge: 38
-  },
+},

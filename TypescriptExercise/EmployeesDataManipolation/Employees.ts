@@ -8,6 +8,7 @@ import { averageSalaryAll } from "./exercises/departmentSalaryAvg";
 import { mostPaid } from "./exercises/mostPaid";
 import { mostPaidByDepartment } from "./exercises/mostPaidByDepartment";
 import { sortByDepartmentAndSalary } from "./exercises/sortBy";
+import { statistics } from "./exercises/statistics";
 
 export const employees: Employee[] = toEmployees([
     ["Johnny Depp",        "Finance",     45, 40_000],
@@ -46,3 +47,4 @@ console.log("Most paid employee in Sales department:", mostPaidByDepartment(sale
 console.log("Most paid employee in Finance department:", mostPaidByDepartment(financeEmployees, "Finance"));
 console.log("Most paid employee in Engineering department:", mostPaidByDepartment(filteredEngineerEmployees, "Engineering"));
 console.log("Sorted employees by department and salary:", sortByDepartmentAndSalary(employees));
+console.log("Statistics by department:", statistics(employees));
