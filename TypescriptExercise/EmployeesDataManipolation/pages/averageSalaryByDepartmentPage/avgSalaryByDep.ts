@@ -6,6 +6,8 @@ import { averageSalaryAll } from "../../exercises/departmentSalaryAvg";
 import { filterByDepartment } from "../../scripts/departmentFiltering";
 import avgSalaryByDepStyles from './avgSalaryByDep.css?inline';
 import { formatCurrency } from "../../scripts/formatCurrency";
+import { averageSalary } from "../../exercises/averageSalary";
+import { filteringEmployees } from "../../exercises/ageFiltering";
 
 const { salesEmployees, filteredEngineerEmployees, financeEmployees } = filterByDepartment(employees);
 
@@ -30,6 +32,14 @@ export class AverageSalaryByDepartmentPage extends LitElement {
         `;
     }
 
+    private renderAverageSalaryByAgeGroup() {
+        return html`
+           <card-component name="0-30" subtitle="Age group" content="${formatCurrency(averageSalary(filteringEmployees(filteredEngineerEmployees, 0, 30)))}"></card-component>
+           <card-component name="31-50" subtitle="Age group" content="${formatCurrency(averageSalary(filteringEmployees(filteredEngineerEmployees, 31, 50)))}"></card-component>
+           <card-component name="51+" subtitle="Age group" content="${formatCurrency(averageSalary(filteringEmployees(filteredEngineerEmployees, 51)))}"></card-component>
+        `;
+    }
+
     render() {
         return html`
             <main class="average-salary-page">
@@ -44,6 +54,15 @@ export class AverageSalaryByDepartmentPage extends LitElement {
                         <div class="grid-header">Finance</div>
                         <div class="grid-header">Sales</div>
                         ${this.renderAverageSalary()}
+                    </grid-component>
+                </section>
+                <section class="hero secondary-hero">
+                    <p class="eyebrow">Exercise description</p>
+                    <h2>Average Salary by Age Group</h2>
+                </section>
+                <section class="result cards-result">
+                    <grid-component class="salary-grid" columns="3" rows="1">
+                        ${this.renderAverageSalaryByAgeGroup()}
                     </grid-component>
                 </section>
             </main>

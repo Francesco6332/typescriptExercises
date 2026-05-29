@@ -24,3 +24,14 @@
 
 ## Task 10: 
 # create page for sorting employees exercises
+
+## Task 11:
+# in app.ts create a section with statistics for each department 
+
+Engineering: {
+    count: 13,
+    averageSalary: 88461,
+    minSalary: 54000,
+    maxSalary: 120000,
+    averageAge: 38
+  },
