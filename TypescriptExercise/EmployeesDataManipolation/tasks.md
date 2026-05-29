@@ -12,3 +12,15 @@
 
 ## Task 6:
 # Sort the employees by department then by salary
+
+## Task 7:
+# Create Lit component page (app component, card component, grid component, pages component)
+
+## Task 8: 
+# Enhance the components structurse, add navigation
+
+## Task 9:
+# create pages for exercises
+
+## Task 10: 
+# create page for sorting employees exercises

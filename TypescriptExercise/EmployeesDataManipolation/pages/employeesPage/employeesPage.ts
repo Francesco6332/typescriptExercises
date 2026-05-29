@@ -2,6 +2,7 @@ import { LitElement, html, unsafeCSS } from "lit";
 import '../../components/grid/grid';
 import { employees } from "../../Employees";
 import employeesPageStyles from './employeesPage.css?inline';
+import { formatCurrency } from "../../scripts/formatCurrency";
 
 class EmployeesPage extends LitElement {
   static styles = unsafeCSS(employeesPageStyles);
@@ -30,7 +31,7 @@ class EmployeesPage extends LitElement {
               <div class="grid-cell">${employee.name}</div>
               <div class="grid-cell">${employee.department}</div>
               <div class="grid-cell">${employee.age}</div>
-              <div class="grid-cell">${employee.salary}</div>
+              <div class="grid-cell">${formatCurrency(employee.salary)}</div>
             `)}
           </grid-component>
         </main>`;
