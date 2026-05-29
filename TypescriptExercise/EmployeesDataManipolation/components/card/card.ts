@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "Lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import cardStyles from "./card.css?inline";
 import { CardProps } from "./cardInterface";

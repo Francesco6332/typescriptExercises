@@ -1,33 +1,29 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .card {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  height: 100%;
+  min-height: 150px;
+  padding: 18px;
+  border: 1px solid #dbe2ea;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-}
-
-.card h3 {
-    margin-top: 0;
-    font-size: 1.5em;
-    color: #333;
-}
-
-.card h4 {
-    margin: 8px 0;
-    color: #666;
-}
-
-.card p {
-    margin: 4px 0;
-    color: #555;
-}
-.card {
-  height: 100%;
+  border-color: #b8c3d4;
+  box-shadow: 0 10px 24px rgb(15 23 42 / 0.12);
+  transform: translateY(-2px);
 }
 
 h3,
@@ -38,18 +34,21 @@ p {
 
 h3 {
   color: #101827;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 h4 {
-  margin-bottom: 8px;
   color: #687385;
   font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 p {
-  color: #4b5563;
+  color: #2563eb;
+  font-size: 20px;
+  font-weight: 700;
 }
