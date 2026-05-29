@@ -1,5 +1,13 @@
-import { employees } from "../Employees";
+import { Employee } from "../EmployeeInterface";
 
-export const filteredEngineerEmployees = employees.filter(f => f.department === 'Engineering');
-export const financeEmployees = employees.filter(f => f.department === 'Finance');
-export const salesEmployees = employees.filter(f => f.department === 'Sales');
+export function filterByDepartment(employees: Employee[]): {
+    filteredEngineerEmployees: Employee[];
+    financeEmployees: Employee[];
+    salesEmployees: Employee[];
+} {
+    return {
+        filteredEngineerEmployees: employees.filter(f => f.department === 'Engineering'),
+        financeEmployees: employees.filter(f => f.department === 'Finance'),
+        salesEmployees: employees.filter(f => f.department === 'Sales')
+    };
+}

@@ -5,13 +5,20 @@
   "description": "TypeScript exercises on employee data manipulation",
   "main": "dist/Employees.js",
   "scripts": {
-    "build": "tsc -p .",
+    "build": "tsc -p . && vite build",
     "start": "node dist/Employees.js",
     "check": "tsc -p . --noEmit",
     "clean": "node -e \"const fs=require('fs'); fs.rmSync('dist',{ recursive: true, force: true });\"",
-    "dev": "npm run build && npm run start"
+    "dev": "vite --host 127.0.0.1",
+    "dev:node": "npm run build:ts && npm run start",
+    "build:ts": "tsc -p .",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.14"
+  },
+  "dependencies": {
+    "lit": "^3.3.3"
   }
 }

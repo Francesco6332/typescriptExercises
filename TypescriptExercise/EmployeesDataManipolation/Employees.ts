@@ -2,14 +2,17 @@ import { Employee } from "./EmployeeInterface";
 import { toEmployees } from "./types";
 import { averageSalary } from "./exercises/averageSalary";
 import { filteringEmployees } from "./exercises/ageFiltering";
-import { salesEmployees, filteredEngineerEmployees, financeEmployees } from "./scripts/departmentFiltering";
-import { sortBy } from "./exercises/sortBySalary";
+import { filterByDepartment } from "./scripts/departmentFiltering";
+import { sortEngineersBySalary } from "./exercises/sortBy";
 import { averageSalaryAll } from "./exercises/departmentSalaryAvg";
+import { mostPaid } from "./exercises/mostPaid";
+import { mostPaidByDepartment } from "./exercises/mostPaidByDepartment";
+import { sortByDepartmentAndSalary } from "./exercises/sortBy";
 
 export const employees: Employee[] = toEmployees([
     ["Johnny Depp",        "Finance",     45, 40_000],
     ["Quentin Tarantino",  "Sales",       24, 75_000],
-    ["Barbara Streisand",  "Engineering", 32, 120_000],
+    ["Barbara Streisand",  "Engineering", 32, 110_000],
     ["Meryl Streep",       "Finance",     29, 55_000],
     ["Emma Watson",        "Finance",     34, 72_000],
     ["Leonardo DiCaprio",  "Sales",       41, 88_000],
@@ -31,13 +34,15 @@ export const employees: Employee[] = toEmployees([
 ])
 
 
+const { salesEmployees, filteredEngineerEmployees, financeEmployees } = filterByDepartment(employees);
 
-console.log("Average salary (0-30):", averageSalary(filteringEmployees(0, 30)));
-console.log("Average salary (31-50):", averageSalary(filteringEmployees(31, 50)));
-console.log("Average salary (51+):", averageSalary(filteringEmployees(51)));
-console.log("Sorted engineer employees by salary:", sortBy(filteredEngineerEmployees));
+console.log("Average salary (0-30):", averageSalary(filteringEmployees(filteredEngineerEmployees, 0, 30)));
+console.log("Average salary (31-50):", averageSalary(filteringEmployees(filteredEngineerEmployees, 31, 50)));
+console.log("Average salary (51+):", averageSalary(filteringEmployees(filteredEngineerEmployees, 51)));
+console.log("Sorted engineer employees by salary:", sortEngineersBySalary(filteredEngineerEmployees));
 console.log("Average salary by department:", averageSalaryAll(filteredEngineerEmployees, financeEmployees, salesEmployees));
-
-
-
-
+console.log("Most paid employee:", mostPaid(employees));
+console.log("Most paid employee in Sales department:", mostPaidByDepartment(salesEmployees, "Sales"));
+console.log("Most paid employee in Finance department:", mostPaidByDepartment(financeEmployees, "Finance"));
+console.log("Most paid employee in Engineering department:", mostPaidByDepartment(filteredEngineerEmployees, "Engineering"));
+console.log("Sorted employees by department and salary:", sortByDepartmentAndSalary(employees));

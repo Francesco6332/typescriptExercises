@@ -2,13 +2,15 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "rootDir": ".",
+    "rootDir": "TypescriptExercise/EmployeesDataManipolation",
     "outDir": "dist",
     "strict": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts"],
+  "include": ["TypescriptExercise/EmployeesDataManipolation/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }

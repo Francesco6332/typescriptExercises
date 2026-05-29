@@ -5,12 +5,15 @@ const types_1 = require("./types");
 const averageSalary_1 = require("./exercises/averageSalary");
 const ageFiltering_1 = require("./exercises/ageFiltering");
 const departmentFiltering_1 = require("./scripts/departmentFiltering");
-const sortBySalary_1 = require("./exercises/sortBySalary");
+const sortBy_1 = require("./exercises/sortBy");
 const departmentSalaryAvg_1 = require("./exercises/departmentSalaryAvg");
+const mostPaid_1 = require("./exercises/mostPaid");
+const mostPaidByDepartment_1 = require("./exercises/mostPaidByDepartment");
+const sortBy_2 = require("./exercises/sortBy");
 exports.employees = (0, types_1.toEmployees)([
     ["Johnny Depp", "Finance", 45, 40000],
     ["Quentin Tarantino", "Sales", 24, 75000],
-    ["Barbara Streisand", "Engineering", 32, 120000],
+    ["Barbara Streisand", "Engineering", 32, 110000],
     ["Meryl Streep", "Finance", 29, 55000],
     ["Emma Watson", "Finance", 34, 72000],
     ["Leonardo DiCaprio", "Sales", 41, 88000],
@@ -34,5 +37,10 @@ const { salesEmployees, filteredEngineerEmployees, financeEmployees } = (0, depa
 console.log("Average salary (0-30):", (0, averageSalary_1.averageSalary)((0, ageFiltering_1.filteringEmployees)(filteredEngineerEmployees, 0, 30)));
 console.log("Average salary (31-50):", (0, averageSalary_1.averageSalary)((0, ageFiltering_1.filteringEmployees)(filteredEngineerEmployees, 31, 50)));
 console.log("Average salary (51+):", (0, averageSalary_1.averageSalary)((0, ageFiltering_1.filteringEmployees)(filteredEngineerEmployees, 51)));
-console.log("Sorted engineer employees by salary:", (0, sortBySalary_1.sortBy)(filteredEngineerEmployees));
+console.log("Sorted engineer employees by salary:", (0, sortBy_1.sortEngineersBySalary)(filteredEngineerEmployees));
 console.log("Average salary by department:", (0, departmentSalaryAvg_1.averageSalaryAll)(filteredEngineerEmployees, financeEmployees, salesEmployees));
+console.log("Most paid employee:", (0, mostPaid_1.mostPaid)(exports.employees));
+console.log("Most paid employee in Sales department:", (0, mostPaidByDepartment_1.mostPaidByDepartment)(salesEmployees, "Sales"));
+console.log("Most paid employee in Finance department:", (0, mostPaidByDepartment_1.mostPaidByDepartment)(financeEmployees, "Finance"));
+console.log("Most paid employee in Engineering department:", (0, mostPaidByDepartment_1.mostPaidByDepartment)(filteredEngineerEmployees, "Engineering"));
+console.log("Sorted employees by department and salary:", (0, sortBy_2.sortByDepartmentAndSalary)(exports.employees));
