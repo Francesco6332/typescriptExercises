@@ -10,6 +10,7 @@ import { employees } from './Employees';
 import appStyles from './app.css?inline';
 import { state } from "lit/decorators.js";
 import { formatCurrency } from "./scripts/formatCurrency";
+import { statistics } from "./exercises/statistics";
 
 
 class App extends LitElement {
@@ -35,6 +36,10 @@ class App extends LitElement {
   }
 
   private goTo(path: string) {
+    if (this.page === path) {
+      return;
+    }
+
     history.pushState(null, '', path);
     this.page = path;
   }
@@ -63,16 +68,25 @@ class App extends LitElement {
         break;
     }
 
+    const departmentCards = ['Engineering', 'Finance', 'Sales'].map(department => {
+      const employee = mostPaidByDepartment(employees, department);
+
+      return html`
+        <card-component
+          name=${employee.name}
+          subtitle=${employee.department}
+          content=${formatCurrency(employee.salary)}
+        ></card-component>
+      `;
+    });
+
     return html`
       <main>
-      
         <h1>Employees Data Manipulation</h1>
         <h2>Most Paid Employees by Department</h2>
 
         <grid-component columns="3" rows="1">
-          <card-component name=${mostPaidByDepartment(employees, 'Engineering').name} subtitle=${mostPaidByDepartment(employees, 'Engineering').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Engineering').salary)}></card-component>
-          <card-component name=${mostPaidByDepartment(employees, 'Finance').name} subtitle=${mostPaidByDepartment(employees, 'Finance').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Finance').salary)}></card-component>
-          <card-component name=${mostPaidByDepartment(employees, 'Sales').name} subtitle=${mostPaidByDepartment(employees, 'Sales').department} content=${formatCurrency(mostPaidByDepartment(employees, 'Sales').salary)}></card-component>
+          ${departmentCards}
         </grid-component>
 
         <section class="hero">
@@ -81,7 +95,14 @@ class App extends LitElement {
         </section>
 
         <section class="result">
-          <grid-component columns="3" rows="1">
+          <grid-component class="statistics-grid" columns="5" rows="4">
+            <div class="grid-header">Department</div>
+            <div class="grid-header">Employees</div>
+            <div class="grid-header">Min salary</div>
+            <div class="grid-header">Max salary</div>
+            <div class="grid-header">Avg age</div>
+
+            ${this.renderDepartmentStatistics()}
           </grid-component>
         </section>
 
@@ -101,6 +122,27 @@ class App extends LitElement {
 
       </main>
     `;
+  }
+
+  private renderDepartmentStatistics() {
+    const {
+      countEmployeesByDepartment,
+      minimumSalaryByDepartment,
+      maximumSalaryByDepartment,
+      avgAge,
+    } = statistics(employees);
+
+    return ([
+      ['Engineering', countEmployeesByDepartment.engineering, minimumSalaryByDepartment.engineering, maximumSalaryByDepartment.engineering, avgAge.engineering],
+      ['Finance', countEmployeesByDepartment.finance, minimumSalaryByDepartment.finance, maximumSalaryByDepartment.finance, avgAge.finance],
+      ['Sales', countEmployeesByDepartment.sales, minimumSalaryByDepartment.sales, maximumSalaryByDepartment.sales, avgAge.sales],
+    ] as const).map(([department, count, minSalary, maxSalary, averageAge]) => html`
+      <div class="grid-cell department-name">${department}</div>
+      <div class="grid-cell">${count}</div>
+      <div class="grid-cell">${formatCurrency(minSalary)}</div>
+      <div class="grid-cell">${formatCurrency(maxSalary)}</div>
+      <div class="grid-cell">${averageAge}</div>
+    `);
   }
 }
 
