@@ -1,11 +1,14 @@
-import {LitElement, html, unsafeCSS} from "lit";
+import {LitElement, html, render, unsafeCSS} from "lit";
 import "../../components/grid/grid";
 import { employees } from "../../Employees";
-import { sortByDepartmentAndSalary } from "../../exercises/sortBy";
+import { sortByDepartmentAndSalary, sortEngineersBySalary } from "../../exercises/sortBy";
 import { formatCurrency } from "../../scripts/formatCurrency";
 import sortByPageStyles from "./sortByPage.css?inline";
 import { state } from "lit/decorators.js";
+import { filterByDepartment } from "../../scripts/departmentFiltering";
 
+
+const { filteredEngineerEmployees } = filterByDepartment(employees);
 class SortByPage extends LitElement {
     static styles = unsafeCSS(sortByPageStyles);
     private readonly pageSize = 10;
@@ -46,6 +49,19 @@ class SortByPage extends LitElement {
         `;
     }
 
+    private renderSortedEngineersBySalary() {
+        const sortedEmployees = sortEngineersBySalary(filteredEngineerEmployees).slice(0, this.visibleCount);
+
+        return html`
+            ${sortedEmployees.map(employee => html`
+                <div class="grid-cell">${employee.name}</div>
+                <div class="grid-cell">${employee.department}</div>
+                <div class="grid-cell">${employee.age}</div>
+                <div class="grid-cell salary">${formatCurrency(employee.salary)}</div>
+            `)}
+        `;
+    }
+
     render() {
         return html`
             <main class="sort-by-page">
@@ -63,6 +79,21 @@ class SortByPage extends LitElement {
                         <div class="grid-header">Salary</div>
 
                         ${this.renderSortedByDepartmentAndSalary()}
+                    </grid-component>
+                </section>
+                <section class="hero" style="margin-top: 32px;">
+                    <p class="eyebrow">Exercise description</p>
+                    <h1>Sort Engineering Employees by salary</h1>
+                    <p class="description">Sort the employees by salary. They should be sorted by salary in descending order.</p>
+                </section>
+                <section class="result">
+                    <grid-component class="employees-grid" columns="4" rows="${Math.min(this.visibleCount, employees.length) + 1}">
+                        <div class="grid-header">Name</div>
+                        <div class="grid-header">Department</div>
+                        <div class="grid-header">Age</div>
+                        <div class="grid-header">Salary</div>
+
+                        ${this.renderSortedEngineersBySalary()}
                     </grid-component>
                 </section>
             </main>
