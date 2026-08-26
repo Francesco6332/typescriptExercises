@@ -9,11 +9,12 @@
   gap: 10px;
   height: 100%;
   min-height: 150px;
-  padding: 18px;
-  border: 1px solid #dbe2ea;
+  padding: 20px;
+  border: 1px solid #d8e2ea;
   border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+  background:
+    linear-gradient(180deg, #ffffff 0, #f8fbfb 100%);
+  box-shadow: 0 12px 28px rgb(15 23 42 / 0.08);
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
@@ -21,9 +22,9 @@
 }
 
 .card:hover {
-  border-color: #b8c3d4;
-  box-shadow: 0 10px 24px rgb(15 23 42 / 0.12);
-  transform: translateY(-2px);
+  border-color: #99f6e4;
+  box-shadow: 0 16px 34px rgb(15 23 42 / 0.13);
+  transform: translateY(-3px);
 }
 
 h3,
@@ -33,14 +34,14 @@ p {
 }
 
 h3 {
-  color: #101827;
+  color: #0f172a;
   font-size: 22px;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 h4 {
-  color: #687385;
+  color: #0f766e;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
@@ -48,7 +49,7 @@ h4 {
 }
 
 p {
-  color: #2563eb;
+  color: #be123c;
   font-size: 20px;
   font-weight: 700;
 }
